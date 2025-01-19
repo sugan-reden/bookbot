@@ -7,15 +7,16 @@ def main():
     word_count = count_words(file_contents)
     # print(f"Word count: {word_count}")
 
-    lowered_content = file_contents.lower()
+    lowered_text = file_contents.lower()
     # print(lowered_content)
 
-    character_counts = check_seen_characters(lowered_content)
+    character_counts = check_seen_characters(lowered_text)
     # print(character_counts)
     # print(type(character_counts))
 
     chara_count_list = to_list(character_counts)
     chara_count_list.sort(reverse=True, key=sort_on)
+    sorted_list = chara_count_list
     # print(chara_count_list)
 
     # Making a nice report
@@ -24,11 +25,13 @@ def main():
     print("\n")
     # for i in character_counts:
     #     print(f"The '{i}' character was found {character_counts[i]} times")
-    for i in chara_count_list:
-        temp_dict = i
-        print(f"The '{temp_dict["character"]}' character was found {temp_dict["count"]} times")
+
+    for item in sorted_list:
+        print(f"The '{item["character"]}' character was found {item["count"]} times")
+
     print("--- End report ---")
 
+# To make the sort happen on the values of "count".
 def sort_on(dict):
     return dict["count"]
 
